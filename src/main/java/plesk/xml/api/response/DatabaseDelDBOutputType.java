@@ -5,7 +5,7 @@
 //
 
 
-package generated;
+package plesk.xml.api;
 
 import java.util.ArrayList;
 import java.util.List;

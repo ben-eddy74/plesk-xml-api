@@ -5,7 +5,7 @@
 //
 
 
-package generated;
+package plesk.xml.api;
 
 import java.math.BigInteger;
 import javax.xml.namespace.QName;
