@@ -1,7 +1,13 @@
 <jaxb:bindings xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   version="3.0">
-	<!-- Deconflict collision in object factory [line 52 and 44] -->
+	<!-- Change List method to Operators -->
+	<jaxb:bindings schemaLocation="../xsd/agent_input.xsd">
+		<jaxb:bindings node="//xs:choice">
+			<jaxb:property name="Operators" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+        <!-- Deconflict collision in object factory [line 52 and 44] -->
 	<jaxb:bindings schemaLocation="../xsd/protected_dir.xsd">
 		<jaxb:bindings node="//xs:complexType[@name='ProtectedDirLocation']">
 			<jaxb:factoryMethod name="ProtectedDirLocationType"/>
