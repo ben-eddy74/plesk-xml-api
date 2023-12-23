@@ -7,6 +7,57 @@
 			<jaxb:property name="Operators" />
 		</jaxb:bindings>
 	</jaxb:bindings>
+        <!-- Change List method to Operations -->
+	<jaxb:bindings schemaLocation="../xsd/certificate_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='CertificateActionRequest']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+	<jaxb:bindings schemaLocation="../xsd/client_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='ClientTypeRequest']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+	<jaxb:bindings schemaLocation="../xsd/dns_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='DNSInputType']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+	<jaxb:bindings schemaLocation="../xsd/domainalias_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='DomainAliasInputType']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+	<jaxb:bindings schemaLocation="../xsd/event_log_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='EventLogInputType']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+	<jaxb:bindings schemaLocation="../xsd/ip_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='IpInputType']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+	<jaxb:bindings schemaLocation="../xsd/mail_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='MailTypeRequest']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+	<jaxb:bindings schemaLocation="../xsd/secret_key_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='SecretKeyInputType']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+	<jaxb:bindings schemaLocation="../xsd/server_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='ServerOperatorType']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+	<jaxb:bindings schemaLocation="../xsd/ui_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='UIInputType']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+	</jaxb:bindings>
         <!-- Deconflict collision in object factory [line 52 and 44] -->
 	<jaxb:bindings schemaLocation="../xsd/protected_dir.xsd">
 		<jaxb:bindings node="//xs:complexType[@name='ProtectedDirLocation']">

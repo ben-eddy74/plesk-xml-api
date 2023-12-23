@@ -33,7 +33,7 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpRequest.Builder;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-import plesk.xml.api.input.RequestPacketType;
+import plesk.xml.api.input.Packet;
 import plesk.xml.api.output.ResponsePacketType;
 /**
  *
@@ -48,23 +48,48 @@ public class PleskAPI {
 
     private static PleskAPI instance = new PleskAPI();
 
+    /**
+     * Set the hostname of the Plesk server to interact with
+     * @param hostname
+     * @throws URISyntaxException
+     * @throws MalformedURLException 
+     */
     public static void setHost(String hostname) throws URISyntaxException, MalformedURLException {
         instance.url = new URL("https://" + hostname + ":8443/enterprise/control/agent.php");
     }
 
+    /**
+     * Set credentials using a username and password
+     * @param username
+     * @param password 
+     */
     public static void setCredentials(String username, String password) {
         instance.login = username;
         instance.password = password;
         instance.secretKey = null;
     }
 
+    /**
+     * Set credentials using a secret key
+     * See: https://docs.plesk.com/en-US/obsidian/cli-linux/using-command-line-utilities/secret_key-authentication-in-plesk-xml-api.73880/
+     * @param secretkey 
+     */    
     public static void setCredentials(String secretkey) {
         instance.secretKey = secretkey;
         instance.login = "";
         instance.password = "";
     }
 
-    public static ResponsePacketType sendRequest(RequestPacketType request)
+    /**
+     * Send a request packet to Plesk Server
+     * @param request
+     * @return
+     * @throws URISyntaxException
+     * @throws JAXBException
+     * @throws IOException
+     * @throws InterruptedException 
+     */
+    public static ResponsePacketType sendRequest(Packet request)
             throws URISyntaxException, JAXBException, IOException, InterruptedException {
 
         String requestbody = marshal(request);
@@ -92,14 +117,26 @@ public class PleskAPI {
         return (ResponsePacketType) um.unmarshal(new StringReader(response.body()));
     }
 
-    public static String marshal(RequestPacketType req) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(RequestPacketType.class);
+    /**
+     * Marshals a request packet to a XML string
+     * @param request
+     * @return
+     * @throws JAXBException 
+     */
+    public static String marshal(Packet request) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(Packet.class);
         Marshaller m = context.createMarshaller();
         StringWriter sw = new StringWriter();
-        m.marshal(req, sw);
+        m.marshal(request, sw);
         return sw.toString();
     }
 
+    /**
+     * Marshalls a response packet to a XML string
+     * @param repsonse
+     * @return
+     * @throws JAXBException 
+     */
     public static String marshal(ResponsePacketType repsonse) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(ResponsePacketType.class);
         Marshaller m = context.createMarshaller();

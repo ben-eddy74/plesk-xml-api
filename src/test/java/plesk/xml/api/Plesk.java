@@ -27,43 +27,40 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import plesk.xml.api.input.RequestPacketType;
+import plesk.xml.api.input.Packet;
 
 /**
  *
  * @author Eddy Vermoen <@ben-eddy74>
  */
-public class PleskAPITest {
+public class Plesk {
 
-    @BeforeAll
-    static void init(){
-        
-    }
-    
-    @Test
-    void getCustomers() throws JAXBException, XPathExpressionException, ParserConfigurationException, SAXException, IOException{
-    
-        RequestPacketType request = new Customer.GetRequestBuilder().getGenInfo(true).getStat(true).build();
-        String result = PleskAPI.marshal(request);
-        //System.out.println(result);
-        
+    /**
+     * Converts an instance of plesk.xml.api.input.Packet to a XML NodeList
+     * @param requestpacket an instance of plesk.xml.api.input.Packet
+     * @param expression a xpath expression
+     * @return
+     * @throws SAXException
+     * @throws IOException
+     * @throws JAXBException
+     * @throws XPathExpressionException
+     * @throws ParserConfigurationException 
+     */
+    NodeList getResult(Packet requestpacket, String expression) throws SAXException, IOException, JAXBException, XPathExpressionException, ParserConfigurationException {
+        String result = PleskAPI.marshal(requestpacket);
+        System.out.println(result);
+
         DocumentBuilder docbuilder = DocumentBuilderFactory.newDefaultInstance().newDocumentBuilder();
         Document doc = docbuilder.parse(new InputSource(new StringReader(result)));
-        
+
         XPath xPath = XPathFactory.newInstance().newXPath();
-        String expression = "/packet/customer/get";
+        
         NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
         //System.out.println(nodeList.item(0).getFirstChild().getNodeName());
-        
-        assertEquals("filter", nodeList.item(0).getFirstChild().getNodeName());
-        assertEquals("dataset", nodeList.item(0).getLastChild().getNodeName());
+        return nodeList;
     }
-    
 }
