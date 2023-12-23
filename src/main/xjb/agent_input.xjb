@@ -18,6 +18,14 @@
 			<jaxb:property name="Operations" />
 		</jaxb:bindings>
 	</jaxb:bindings>
+	<jaxb:bindings schemaLocation="../xsd/database_input.xsd">
+		<jaxb:bindings node="//xs:complexType[@name='DBServerTypeRequest']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+		<jaxb:bindings node="//xs:complexType[@name='DatabaseInputType']/xs:choice">
+			<jaxb:property name="Operations" />
+		</jaxb:bindings>
+        </jaxb:bindings>
 	<jaxb:bindings schemaLocation="../xsd/dns_input.xsd">
 		<jaxb:bindings node="//xs:complexType[@name='DNSInputType']/xs:choice">
 			<jaxb:property name="Operations" />

@@ -19,6 +19,7 @@ package plesk.xml.api;
 
 import jakarta.xml.bind.JAXBException;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,37 +28,43 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import plesk.xml.api.input.DBServerTypeRequest;
+import plesk.xml.api.input.DNSInputType;
 import plesk.xml.api.input.ObjectFactory;
 import plesk.xml.api.input.Packet;
+import plesk.xml.api.input.SimpleFilterType;
 
 /**
  *
  * @author Eddy Vermoen <@ben-eddy74>
  */
-public class DatabaseServerTest extends Plesk {
+public class DNSTest extends Plesk {
 
     ObjectFactory inputFactory = new ObjectFactory();
 
     @Test
-    void getSupportedTypes() {
+    void getCustomers() {
 
-        DBServerTypeRequest.GetSupportedTypes getsupportedtypesrequest = inputFactory.createDBServerTypeRequestGetSupportedTypes();
-
-        DBServerTypeRequest dbserveroperator = inputFactory.createDBServerTypeRequest();
-        dbserveroperator.setOperations(getsupportedtypesrequest);
+        SimpleFilterType filter = inputFactory.createSimpleFilterType();
+        filter.getSiteId().add(BigInteger.ONE);
+        
+        DNSInputType.Get getdnsrequest = inputFactory.createDNSInputTypeGet();
+        getdnsrequest.setFilter(filter);
+                
+        DNSInputType dnsoperator = inputFactory.createDNSInputType();
+        dnsoperator.getOperations().add(inputFactory.createDNSInputTypeGet(getdnsrequest));
 
         Packet requestpacket = inputFactory.createPacket();
-        requestpacket.getOperators().add(dbserveroperator);
+        requestpacket.getOperators().add(dnsoperator);
 
         try {
-            String expression = "/packet/db_server";
+            String expression = "/packet/dns/get";
             NodeList nodeList = getResult(requestpacket, expression);
-            assertEquals("get-supported-types", nodeList.item(0).getFirstChild().getNodeName());
+            assertEquals("filter", nodeList.item(0).getFirstChild().getNodeName());
+            assertEquals("1", nodeList.item(0).getFirstChild().getFirstChild().getTextContent());
 
         } catch (SAXException | IOException | JAXBException | XPathExpressionException | ParserConfigurationException ex) {
             Logger.getLogger(ClientTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+
 }

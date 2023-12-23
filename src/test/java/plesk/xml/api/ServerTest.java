@@ -27,33 +27,42 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import plesk.xml.api.input.DBServerTypeRequest;
+import plesk.xml.api.input.GetKeyFilter;
+import plesk.xml.api.input.GetKeyType;
+import plesk.xml.api.input.GetType;
 import plesk.xml.api.input.ObjectFactory;
 import plesk.xml.api.input.Packet;
+import plesk.xml.api.input.ServerOperatorType;
 
 /**
  *
  * @author Eddy Vermoen <@ben-eddy74>
  */
-public class DatabaseServerTest extends Plesk {
-
+public class ServerTest extends Plesk{
+    
     ObjectFactory inputFactory = new ObjectFactory();
-
+    
     @Test
-    void getSupportedTypes() {
+    void getKey(){
+        
+        //GetKeyFilter filter = new GetKeyFilter();
 
-        DBServerTypeRequest.GetSupportedTypes getsupportedtypesrequest = inputFactory.createDBServerTypeRequestGetSupportedTypes();
-
-        DBServerTypeRequest dbserveroperator = inputFactory.createDBServerTypeRequest();
-        dbserveroperator.setOperations(getsupportedtypesrequest);
-
-        Packet requestpacket = inputFactory.createPacket();
-        requestpacket.getOperators().add(dbserveroperator);
+        GetKeyType getkeytype = inputFactory.createGetKeyType();
+        //getkeytype.setFilter(filter);
+        
+        GetType getrequest = inputFactory.createGetType();
+        getrequest.setKey(getkeytype);
+        
+        ServerOperatorType serveroperator = inputFactory.createServerOperatorType();
+        serveroperator.getOperations().add(inputFactory.createServerOperatorTypeGet(getrequest));
+        
+                Packet requestpacket = inputFactory.createPacket();
+        requestpacket.getOperators().add(serveroperator);
 
         try {
-            String expression = "/packet/db_server";
+            String expression = "/packet/server/get";
             NodeList nodeList = getResult(requestpacket, expression);
-            assertEquals("get-supported-types", nodeList.item(0).getFirstChild().getNodeName());
+            assertEquals("key", nodeList.item(0).getFirstChild().getNodeName());
 
         } catch (SAXException | IOException | JAXBException | XPathExpressionException | ParserConfigurationException ex) {
             Logger.getLogger(ClientTest.class.getName()).log(Level.SEVERE, null, ex);

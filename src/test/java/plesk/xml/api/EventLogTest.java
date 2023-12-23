@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import plesk.xml.api.input.DBServerTypeRequest;
+import plesk.xml.api.input.EventLogInputType;
 import plesk.xml.api.input.ObjectFactory;
 import plesk.xml.api.input.Packet;
 
@@ -35,29 +35,28 @@ import plesk.xml.api.input.Packet;
  *
  * @author Eddy Vermoen <@ben-eddy74>
  */
-public class DatabaseServerTest extends Plesk {
+public class EventLogTest extends Plesk {
 
     ObjectFactory inputFactory = new ObjectFactory();
 
     @Test
-    void getSupportedTypes() {
+    void getEventLogTest() {
 
-        DBServerTypeRequest.GetSupportedTypes getsupportedtypesrequest = inputFactory.createDBServerTypeRequestGetSupportedTypes();
+        EventLogInputType.Get geteventlogrequest = inputFactory.createEventLogInputTypeGet();
 
-        DBServerTypeRequest dbserveroperator = inputFactory.createDBServerTypeRequest();
-        dbserveroperator.setOperations(getsupportedtypesrequest);
+        EventLogInputType eventlogoperator = inputFactory.createEventLogInputType();
+        eventlogoperator.getOperations().add(geteventlogrequest);
 
         Packet requestpacket = inputFactory.createPacket();
-        requestpacket.getOperators().add(dbserveroperator);
+        requestpacket.getOperators().add(eventlogoperator);
 
         try {
-            String expression = "/packet/db_server";
+            String expression = "/packet/event_log";
             NodeList nodeList = getResult(requestpacket, expression);
-            assertEquals("get-supported-types", nodeList.item(0).getFirstChild().getNodeName());
+            assertEquals("get", nodeList.item(0).getFirstChild().getNodeName());
 
         } catch (SAXException | IOException | JAXBException | XPathExpressionException | ParserConfigurationException ex) {
             Logger.getLogger(ClientTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 }

@@ -19,6 +19,7 @@ package plesk.xml.api;
 
 import jakarta.xml.bind.JAXBException;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,37 +28,62 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import plesk.xml.api.input.DBServerTypeRequest;
+import plesk.xml.api.input.CBOwner;
+import plesk.xml.api.input.CustomButtonFilter;
 import plesk.xml.api.input.ObjectFactory;
 import plesk.xml.api.input.Packet;
+import plesk.xml.api.input.UIInputType;
 
 /**
  *
  * @author Eddy Vermoen <@ben-eddy74>
  */
-public class DatabaseServerTest extends Plesk {
-
+public class UITest extends Plesk {
+    
     ObjectFactory inputFactory = new ObjectFactory();
+    
+    @Test
+    void getCustomButtonById() {
+        
+        CustomButtonFilter filter = inputFactory.createCustomButtonFilter();
+        filter.getCustombuttonId().add(BigInteger.ONE);
+        
+        UIInputType.GetCustombutton getcustombuttonrequest = inputFactory.createUIInputTypeGetCustombutton();
+        getcustombuttonrequest.setFilter(filter);
+        
+        execute(filter, "custombutton-id", "1");
+    }
 
     @Test
-    void getSupportedTypes() {
+    void getCustomButtonByOwner() {
+ 
+        CBOwner owner = inputFactory.createCBOwner();
+        owner.setAdmin(true);
+        
+        CustomButtonFilter filter = inputFactory.createCustomButtonFilter();
+        filter.getOwner().add(owner);
+        
+        execute(filter, "owner", "true");
+    }
 
-        DBServerTypeRequest.GetSupportedTypes getsupportedtypesrequest = inputFactory.createDBServerTypeRequestGetSupportedTypes();
-
-        DBServerTypeRequest dbserveroperator = inputFactory.createDBServerTypeRequest();
-        dbserveroperator.setOperations(getsupportedtypesrequest);
-
+    void execute(CustomButtonFilter filter, String subNode, String testvalue){
+        UIInputType.GetCustombutton getcustombuttonrequest = inputFactory.createUIInputTypeGetCustombutton();
+        getcustombuttonrequest.setFilter(filter);
+        
+        UIInputType uioperator = inputFactory.createUIInputType();
+        uioperator.getOperations().add(getcustombuttonrequest);
+        
         Packet requestpacket = inputFactory.createPacket();
-        requestpacket.getOperators().add(dbserveroperator);
+        requestpacket.getOperators().add(uioperator);
 
         try {
-            String expression = "/packet/db_server";
+            String expression = "/packet/ui/get-custombutton";
             NodeList nodeList = getResult(requestpacket, expression);
-            assertEquals("get-supported-types", nodeList.item(0).getFirstChild().getNodeName());
-
+            assertEquals("filter", nodeList.item(0).getFirstChild().getNodeName());
+            assertEquals(subNode, nodeList.item(0).getFirstChild().getFirstChild().getNodeName());
+            assertEquals(testvalue, nodeList.item(0).getFirstChild().getFirstChild().getTextContent());
         } catch (SAXException | IOException | JAXBException | XPathExpressionException | ParserConfigurationException ex) {
             Logger.getLogger(ClientTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 }

@@ -27,7 +27,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import plesk.xml.api.input.DBServerTypeRequest;
+import plesk.xml.api.input.DomainAliasFilterType;
+import plesk.xml.api.input.DomainAliasInputType;
 import plesk.xml.api.input.ObjectFactory;
 import plesk.xml.api.input.Packet;
 
@@ -35,29 +36,34 @@ import plesk.xml.api.input.Packet;
  *
  * @author Eddy Vermoen <@ben-eddy74>
  */
-public class DatabaseServerTest extends Plesk {
-
+public class DomainAliasTest extends Plesk {
+    
     ObjectFactory inputFactory = new ObjectFactory();
-
+    
     @Test
-    void getSupportedTypes() {
-
-        DBServerTypeRequest.GetSupportedTypes getsupportedtypesrequest = inputFactory.createDBServerTypeRequestGetSupportedTypes();
-
-        DBServerTypeRequest dbserveroperator = inputFactory.createDBServerTypeRequest();
-        dbserveroperator.setOperations(getsupportedtypesrequest);
-
+    void getDomainAlias() {
+        
+        DomainAliasFilterType filter = inputFactory.createDomainAliasFilterType();
+        filter.getName().add("example.com");
+        
+        DomainAliasInputType.Get getdomainaliasrequest = inputFactory.createDomainAliasInputTypeGet();
+        getdomainaliasrequest.setFilter(filter);
+        
+        DomainAliasInputType domainaliasoperator = inputFactory.createDomainAliasInputType();
+        domainaliasoperator.getOperations().add(getdomainaliasrequest);
+        
         Packet requestpacket = inputFactory.createPacket();
-        requestpacket.getOperators().add(dbserveroperator);
-
+        requestpacket.getOperators().add(domainaliasoperator);
+        
         try {
-            String expression = "/packet/db_server";
+            String expression = "/packet/site-alias/get";
             NodeList nodeList = getResult(requestpacket, expression);
-            assertEquals("get-supported-types", nodeList.item(0).getFirstChild().getNodeName());
+            assertEquals("filter", nodeList.item(0).getFirstChild().getNodeName());
+            assertEquals("example.com", nodeList.item(0).getFirstChild().getFirstChild().getTextContent());
 
         } catch (SAXException | IOException | JAXBException | XPathExpressionException | ParserConfigurationException ex) {
             Logger.getLogger(ClientTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
 }
