@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings version="3.0" xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <jaxb:bindings schemaLocation="../xsd/agent_output.xsd">
+        <jaxb:bindings node="/xs:schema/xs:complexType/xs:sequence/xs:choice[xs:choice]">
+            <jaxb:property name="operators"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/certificate_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='CertificateResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/client_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='ClientResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/database_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='DatabaseServerResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='DatabaseOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/dns_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='DNSResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/webspace.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='DomainTypeRequest']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='DomainResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/domainalias_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='DomainAliasResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/event_log_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='EventLogResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/ip_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='IpResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/mail_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='MailResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/secret_key_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='SecretKeyResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/server_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='ServerOperatorType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='InitialSetupType']">
+            <jaxb:class name="InitialServerSetupType"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/ui_output.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='UIResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/domain_template.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='DomainTemplateInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='DomainTemplateOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='DomanTemplatePHosting']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='DomainTemplateDbServersInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='DomainTemplateDbServersOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/virtdir.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='VDirInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='VDirOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='VDirAppType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='VDirDefaultDocType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/ftpuser.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='FtpUserInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='FtpUserOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/session.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='SessionInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='SessionOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/locale.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='LocaleInput']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='LocaleOutput']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/logrotation.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='LogRotationInput']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='LogRotationOutput']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='LogRotationConditionType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/protected_dir.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='ProtectedDirInput']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='ProtectedDirOutput']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='ProtectedDirLocation']">
+            <jaxb:factoryMethod name="ProtectedDirLocationType"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/subdomain.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='SubdomainInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='SubdomainOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/reseller.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='ResellerInput']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='ResellerOutput']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/reseller_template.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='ResellerTemplateInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='ResellerTemplateOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/aps.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='APSInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='APSOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='APSPackagesListInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/domain_addon_template.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='DomainAddonTemplateInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='DomainAddonTemplateOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='DomainAddonTemplatePHosting']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/site.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='SiteTypeRequest']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='SiteResponseType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='siteHostingAgentSet']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/php_handler.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='PhpHandlerInput']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='PhpHandlerOutput']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/extension.xsd">
+        <jaxb:bindings node="//xs:complexType[@name='ExtensionInputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='ExtensionOutputType']/xs:choice">
+            <jaxb:property name="operations"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+</jaxb:bindings>

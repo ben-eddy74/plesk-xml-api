@@ -1,10 +1,10 @@
 # Plesk XML API
 
-This is a Java project to easily generate classes and to interact with Plesk XML API. 
+This is a Java project to generate Java classes and to interact with Plesk XML API. 
 
 Java classes can be generated from the schema files by using a binding compiler. Because the schema contains some errors, a bindings file must be used to resolve some conflicting issues. To make the process easier, you can use this project. The supplied bindings files also makes some fields prettier.
 
-** note: this repo is not affiliated and does not contain the Plesk XML API schema files **
+**note: this repo is not affiliated and does not contain the Plesk XML API schema files**
 
 ## Generate java classes from Plesk XML API schema files
 

@@ -73,7 +73,7 @@
                                 <source>src/main/xsd/agent_input.xsd</source>
                             </sources>
                             <xjbSources>
-                                <xjbSource>src/main/xjb/agent_input.xjb</xjbSource>
+                                <xjbSource>src/main/xjb/agent_input.xsd.xjb</xjbSource>
                             </xjbSources>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -90,7 +90,7 @@
                                 <source>src/main/xsd/agent_output.xsd</source>
                             </sources>
                             <xjbSources>
-                                <xjbSource>src/main/xjb/agent_output.xjb</xjbSource>
+                                <xjbSource>src/main/xjb/agent_output.xsd.xjb</xjbSource>
                             </xjbSources>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
