@@ -18,6 +18,7 @@
 package plesk.xml.api;
 
 import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
@@ -33,6 +34,8 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpRequest.Builder;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import javax.xml.transform.stream.StreamSource;
+import plesk.xml.api.output.ObjectFactory;
 import plesk.xml.api.input.Packet;
 import plesk.xml.api.output.ResponsePacketType;
 /**
@@ -46,8 +49,8 @@ public class PleskAPI {
     private String password;
     private String secretKey;
 
-    private static PleskAPI instance = new PleskAPI();
-
+    private static final PleskAPI instance = new PleskAPI();
+    
     /**
      * Set the hostname of the Plesk server to interact with
      * @param hostname
@@ -110,11 +113,13 @@ public class PleskAPI {
 
         HttpResponse<String> response = client.send(apirequest.build(), BodyHandlers.ofString());
 
-        JAXBContext context = JAXBContext.newInstance(ResponsePacketType.class);
+        JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
         Unmarshaller um = context.createUnmarshaller();
 
-        System.out.println(response.body());
-        return (ResponsePacketType) um.unmarshal(new StringReader(response.body()));
+        JAXBElement<ResponsePacketType> responsepacket = um.unmarshal(new StreamSource(new StringReader(response.body())), ResponsePacketType.class);
+        //System.out.println(response.body());
+        //return (ResponsePacketType) um.unmarshal(new StringReader(response.body()));
+        return responsepacket.getValue();
     }
 
     /**
